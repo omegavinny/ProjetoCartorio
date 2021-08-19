@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Imovel;
 use App\Models\Proprietario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
-use Symfony\Component\Console\Input\Input;
 
 class SitesController extends Controller
 {
@@ -48,7 +46,7 @@ class SitesController extends Controller
 
             $xml = simplexml_load_string($string);
 
-            foreach($xml->Imoveis->children() as $imovelXML) {
+            foreach ($xml->Imoveis->children() as $imovelXML) {
                 $imovel = null;
                 $proprietario = null;
                 Storage::put("public\images\\" . $imovelXML->nomeArquivo, base64_decode($imovelXML->conteudoArquivo));
@@ -67,7 +65,7 @@ class SitesController extends Controller
 
                 $imovel->save();
 
-                foreach($imovelXML->Proprietarios->children() as $proprietarioXML) {
+                foreach ($imovelXML->Proprietarios->children() as $proprietarioXML) {
                     $proprietario = null;
 
                     $proprietario = Proprietario::where([
@@ -90,6 +88,18 @@ class SitesController extends Controller
                     $proprietario->uf = $proprietarioXML->uf;
                     $proprietario->municipio = $proprietarioXML->municipio;
                     $proprietario->save();
+
+                    $imovel_proprietario = DB::table('imovel_proprietario')->where([
+                        ['imovel_id', '=', $imovel->id],
+                        ['prorietario', '=', $proprietario->id]
+                    ])->get();
+
+                    if (count($imovel_proprietario) == 0) {
+                        DB::table('imovel_proprietario')->insert([
+                            'imovel_id' => $imovel->id,
+                            'proprietario_id' => $proprietario->id,
+                        ]);
+                    }
                 }
             }
         } else {
