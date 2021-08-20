@@ -8,24 +8,33 @@
     <title>Cartórios</title>
 </head>
 <body>
-    <header class="bg-gray-800 px-3 py-4 text-gray-50">
-        <div class="container mx-auto flex justify-between">
+    <header class="bg-blue-900 py-4 text-gray-50">
+        <div class="container flex justify-between mx-auto">
             <div>
-                <h1>
-                    <a href="/cartorio">Cartório</a>
+                <h1 class="text-lg font-bold">
+                    <a href="/cartorio">
+                        <img src="{{ asset('images/brasao_branco.png') }}" alt="Prefeitura Municipal de São Vicente" class="h-12">
+                    </a>
                 </h1>
             </div>
             <div>
-                <a href="#">Login</a>
+                <ul class="flex">
+                    <li class="px-3 py-4">
+                        <a href="/cartorio/imoveis" class="font-semibold">Imoveis</a>
+                    </li>
+                    <li class="px-3 py-4">
+                        <a href="/cartorio/proprietarios" class="font-semibold">Proprietários</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
-    <main class="bg-gray-100 min-h-screen px-3">
+    <main class="bg-gray-200 min-h-screen px-3">
         <div class="bg-white container min-h-screen mx-auto px-3 py-4 overflow-x-auto">
             @yield('content')
         </div>
     </main>
-    <footer class="bg-gray-800 px-3 py-4 text-gray-50">
+    <footer class="bg-blue-900 px-3 py-4 text-gray-50">
         <p class="text-center">&copy; Cartorio {{ date('Y') }}</p>
     </footer>
 </body>

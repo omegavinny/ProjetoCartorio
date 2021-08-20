@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex">
-    <h2 class="text-2xl font-semibold">Imóveis ({{ count($imoveis) }})</h2>
-</div>
+<h3 class="text-2xl font-semibold">Imóveis ({{ count($imoveis) }})</h3>
 
-<hr />
-
-<table class="w-full">
+<table class="mt-4 w-full">
     <thead>
         <tr class="bg-blue-900 text-gray-50">
             <th class="py-2 px-3">Matricula</th>
