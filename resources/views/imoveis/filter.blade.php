@@ -1,6 +1,5 @@
-<form action="#" method="post">
+<form action="/cartorio/imoveis" method="get">
     <h4 class="font-bold py-3 text-center text-lg">Filtros</h4>
-    @csrf
     <div class="flex justify-around">
         <div>
             <label for="matricula" class="block font-medium pb-2 text-center">Matrícula</label>
@@ -12,7 +11,7 @@
 
         <div>
             <label for="inscricao" class="block font-medium pb-2 text-center">Inscrição</label>
-            <input type="number" name="inscricao" id="inscricao" class="border-2 border-gray-400 py-2 px-3 rounded-lg">
+            <input type="text" name="inscricao" id="inscricao" class="border-2 border-gray-400 py-2 px-3 rounded-lg">
             @error('inscricao')
             <small class="font-semibold text-red-500">* {{ $message }}</small>
             @enderror

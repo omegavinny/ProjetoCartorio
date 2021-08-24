@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="text-2xl font-semibold">Proprietários  ({{ count($proprietarios) }})</h3>
+<h3 class="text-2xl font-semibold">Lista de Proprietários</h3>
 
 <table class="mt-4 w-full">
     <thead>
@@ -9,7 +9,7 @@
             <th class="py-2 px-3">Nome</th>
             <th class="py-2 px-3">CNPJ/CPF</th>
             <th class="py-2 px-3">Endereço</th>
-            <th class="py-2 px-3">Imóveis</th>
+            <th class="py-2 px-3">Imóveis<br><small>(Matrícula)</small></th>
         </tr>
     </thead>
     <tbody>

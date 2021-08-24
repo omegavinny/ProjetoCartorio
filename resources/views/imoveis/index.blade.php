@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <div class="py-4">
+<div class="py-4">
     @include('imoveis.filter')
-</div> --}}
+</div>
 
 <h3 class="text-2xl font-semibold">Lista de Imóveis</h3>
 <div class="py-4 overflow-x-auto">
