@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function login(Request $request)
+    public function create()
+    {
+        return view('auths.login');
+    }
+
+    public function store(Request $request)
     {
         $request->validate([
             'email' => 'required',
@@ -24,5 +29,10 @@ class LoginController extends Controller
         }
 
         return response()->json($user, Response::HTTP_OK);
+    }
+
+    public function logout(Request $request)
+    {
+        //
     }
 }

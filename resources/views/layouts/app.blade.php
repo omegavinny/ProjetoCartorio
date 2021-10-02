@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +9,24 @@
     <title>Cartórios</title>
 </head>
 <body>
-    <header class="bg-blue-900 py-4 text-gray-50">
-        <div class="container flex justify-between mx-auto">
-            <div>
-                <h1 class="text-lg font-bold">
-                    <a href="/cartorio">
+    <header class="bg-blue-900 px-3 py-4">
+        <div class="container mx-auto">
+            <div class="flex">
+                <div>
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('images/brasao_branco.png') }}" alt="Prefeitura Municipal de São Vicente" class="h-12">
                     </a>
-                </h1>
-            </div>
-            <div>
-                <ul class="flex">
-                    <li class="px-3 py-4">
-                        <a href="/cartorio/imoveis" class="font-semibold">Imoveis</a>
-                    </li>
-                    <li class="px-3 py-4">
-                        <a href="/cartorio/proprietarios" class="font-semibold">Proprietários</a>
-                    </li>
-                </ul>
+                </div>
+
+                <div class="w-full">
+                    <div class="flex justify-between">
+                        <div class="flex"></div>
+                        <div class="flex">
+                            <a href="{{ route('login') }}" class="font-semibold hover:text-white px-2 py-3 text-gray-50">Entrar</a>
+                            <a href="{{ route('register') }}" class="font-semibold hover:text-white px-2 py-3 text-gray-50">Cadastro</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
