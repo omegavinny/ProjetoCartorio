@@ -5,7 +5,7 @@
     <h3 class="text-2xl font-semibold">Envio do XML</h3>
 
     <div class="mt-4">
-        <form action="/cartorio/upload" method="post" enctype="multipart/form-data">
+        <form action="{{ route('uploads.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="xml" class="block font-medium pb-2">Selecione o arquivo (XML) para envio: </label>

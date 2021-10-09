@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Imovel;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ImoveisController extends Controller
 {
@@ -31,20 +30,6 @@ class ImoveisController extends Controller
         $imoveis = $search->orderBy('updated_at', 'DESC')
             ->get();
 
-        return response()->json($imoveis, Response::HTTP_OK);
-    }
-
-    public function getMatricula($matricula)
-    {
-        $imovel = Imovel::with('proprietarios')->where('matricula', '=', $matricula)->get();
-
-        return response()->json($imovel, Response::HTTP_OK);
-    }
-
-    public function getInscricao($inscricao)
-    {
-        $imovel = Imovel::with('proprietarios')->where('inscricao', '=', $inscricao)->get();
-
-        return response()->json($imovel, Response::HTTP_OK);
+        return view('imoveis.index', compact('imoveis'));
     }
 }

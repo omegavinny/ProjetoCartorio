@@ -17,11 +17,15 @@
 
                 @yield('content')
 
+                <div class="py-4 text-center">
+                    @if (Route::currentRouteName() != 'login')
+                        <a href="{{ route('login') }}" class="block hover:underline py-2 text-blue-600">Já tenho cadastro</a>
+                    @endif
 
-                <div class="py-4">
-                    <hr>
-                    <a href="{{ route('login') }}" class="block hover:underline py-2 text-blue-600 text-right">Já tenho cadastro</a>
-                    <a href="{{ route('passwords.forgot') }}" class="block hover:underline py-2 text-blue-600 text-right">Esqueci minha senha</a>
+                    @if (Route::currentRouteName() != 'register')
+                        <a href="{{ route('register') }}" class="block hover:underline py-2 text-blue-600">Não tenho cadastro</a>
+                    @endif
+                    <a href="{{ route('passwords.forgot') }}" class="block hover:underline py-2 text-blue-600">Esqueci minha senha</a>
                 </div>
             </div>
         </main>
