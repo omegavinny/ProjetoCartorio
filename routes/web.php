@@ -6,6 +6,7 @@ use App\Http\Controllers\ImoveisController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProprietariosController;
 use App\Http\Controllers\UploadsController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
@@ -27,4 +28,9 @@ Route::get('proprietarios/{proprietario}', [ProprietariosController::class, 'sho
 
 Route::get('uploads', [UploadsController::class, 'index'])->name('uploads.index');
 Route::post('uploads', [UploadsController::class, 'store'])->name('uploads.store');
+Route::get('uploads/{upload}/process', [UploadsController::class, 'procFile'])->name('uploads.process');
 Route::get('uploads/enviar-arquivo', [UploadsController::class, 'create'])->name('uploads.create');
+
+Route::get('usuarios', [UsuariosController::class, 'index'])->name('users.index');
+Route::post('usuarios', [UsuariosController::class, 'store'])->name('users.store');
+Route::get('usuarios/cadastar', [UsuariosController::class, 'create'])->name('users.create');

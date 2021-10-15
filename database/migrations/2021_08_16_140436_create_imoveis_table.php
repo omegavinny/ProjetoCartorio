@@ -17,7 +17,7 @@ class CreateImoveisTable extends Migration
             $table->id();
             $table->string('matricula')->nullable();
             $table->string('lancamento')->nullable();
-            $table->date('venda')->nullable();
+            $table->string('venda')->nullable();
             $table->string('nome_arquivo')->nullable();
             $table->string('caminho_arquivo')->nullable();
             $table->timestamps();

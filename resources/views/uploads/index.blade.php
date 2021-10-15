@@ -3,7 +3,9 @@
 @section('content')
 <div class="flex justify-between">
     <h3 class="text-2xl font-semibold">Arquivos Enviados</h3>
-    <a href="{{ route('uploads.create') }}">Enviar Arquivo</a>
+    <a href="{{ route('uploads.create') }}" class="bg-blue-500 hover:bg-blue-300 rounded-lg py-2 px-3">
+        <span class="text-gray-50 hover:text-white font-semibold">Enviar Arquivo</span>
+    </a>
 </div>
 
 <div class="py-4 overflow-x-auto">
@@ -19,6 +21,12 @@
                 {!! \Session::get('error') !!}
             </h4>
         @endif
+
+        @if(\Session::has('warning'))
+            <h4 class="py-3 px-6 text-center bg-yellow-300 text-yellow-600 font-semibold">
+                {!! \Session::get('warning') !!}
+            </h4>
+        @endif
     </div>
 
     <table class="w-full">
@@ -31,7 +39,6 @@
                 <th class="py-2">Data de Geração</th>
                 <th class="py-2">Numero de Registros</th>
                 <th class="py-2">Processado</th>
-                <th class="py-2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -55,18 +62,18 @@
                     {{ $upload->generated_at }}
                 </td>
                 <td class="py-2 px-3 text-center">
-                    {{ 26 }}
+                    {{ $upload->registers }}
                 </td>
                 <td class="py-2 px-3 text-center">
                     @if ($upload->processed)
                         <span class="text-green-500">Sim</span>
                     @else
-                        <span class="text-red-500">Não</span>
+                        <a href="{{ route('uploads.process', $upload->id) }}">
+                            <span class="text-gray-50 hover:text-white font-semibold">
+                                Não!
+                            </span>
+                        </a>
                     @endif
-                </td>
-                <td class="flex justify-around py-2 px-3 text-center">
-                    <a href="#process" class="bg-yellow-400 rounded-lg px-2 py-1">Processar</a>
-                    <a href="#delete" class="bg-red-400 rounded-lg px-2 py-1">Remover</a>
                 </td>
             </tr>
             @endforeach

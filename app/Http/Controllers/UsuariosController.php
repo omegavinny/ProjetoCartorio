@@ -11,13 +11,12 @@ class UsuariosController extends Controller
     public function index()
     {
         $users = User::all();
-        return response()->json($users, Response::HTTP_OK);
+        return view('users.index', compact('users'));
     }
 
-    public function show($id)
+    public function create()
     {
-        $user = User::findOrFail($id);
-        return response()->json($user, Response::HTTP_OK);
+        return view('users.create');
     }
 
     public function store(Request $request)
@@ -27,7 +26,7 @@ class UsuariosController extends Controller
             'email'    => 'email|required|unique:users',
             'name'     => 'required',
             'password' => 'confirmed|min:6|required',
-            'type'     => 'required',
+            'role'     => 'required',
         ]);
 
         $user = User::create([
@@ -35,7 +34,7 @@ class UsuariosController extends Controller
             'email'    => $request->email,
             'name'     => $request->name,
             'password' => bcrypt($request->password),
-            'type'     => $request->type,
+            'role'     => $request->type,
         ]);
 
         return response()->json($user, Response::HTTP_CREATED);
